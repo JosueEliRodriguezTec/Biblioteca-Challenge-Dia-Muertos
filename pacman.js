@@ -296,12 +296,22 @@ function dibujarMapa(){
                 `url("${animaciones[direccion][cuadro]}")`;
 
         }
-        else if(valor===3){
+else if(valor===3){
 
-        casilla.classList.add("libro");
+    if(fila === 1 && columna === 1){
+        casilla.classList.add("esquina1");
+    }
+    else if(fila === 1 && columna === 13){
+        casilla.classList.add("esquina2");
+    }
+    else if(fila === 8 && columna === 1){
+        casilla.classList.add("esquina3");
+    }
+    else if(fila === 8 && columna === 13){
+        casilla.classList.add("esquina4");
+    }
 
-
-        }
+}
         else if(valor===4){
 
             casilla.classList.add("fantasma");
