@@ -16,6 +16,20 @@ document.addEventListener("gestureend", function(e){
 
 });*/
 
+// =========================================
+// PROTECCIÓN DE ACCESO AL CHALLENGE
+// =========================================
+
+const autorizado =
+    sessionStorage.getItem("challengeIniciado");
+
+if(autorizado !== "true"){
+
+    window.location.href =
+        "https://josueelirodrigueztec.github.io/Biblioteca-Challenge-Septiembre/index.html";
+
+}
+
 let monedas = 30;
 let vidas = 3;
 let tiempo = 60;
@@ -48,6 +62,32 @@ let pacmanColumna = 7;
 
 let movimientoX = 0;
 let movimientoY = 0;
+
+// =====================
+// FANTASMA DECORATIVO
+// =====================
+
+let fantasmaRuta = [
+
+    // fila superior
+    [0,0],[0,1],[0,2],[0,3],[0,4],[0,5],[0,6],
+    [0,7],[0,8],[0,9],[0,10],[0,11],[0,12],[0,13],[0,14],
+
+    // lado derecho
+    [1,14],[2,14],[3,14],[4,14],[5,14],[6,14],[7,14],[8,14],[9,14],
+
+    // fila inferior
+    [9,13],[9,12],[9,11],[9,10],[9,9],[9,8],[9,7],
+    [9,6],[9,5],[9,4],[9,3],[9,2],[9,1],[9,0],
+
+    // lado izquierdo
+    [8,0],[7,0],[6,0],[5,0],[4,0],[3,0],[2,0],[1,0]
+
+];
+let fantasmaPaso = 0;
+
+let fantasmaFila = 0;
+let fantasmaColumna = 0;
 
 function abrirLibro(urlLibro){
 
@@ -134,12 +174,15 @@ function verificarVictoria(){
     mostrarVictoria();
 
 }
+function mostrarVictoria(){
 
-   function mostrarVictoria(){
+    // Marcar que el Nivel 2 fue completado
+    sessionStorage.setItem("nivel2Completado", "true");
 
     document.getElementById("medallaPlata").style.display = "flex";
 
     document.getElementById("totalMonedas").textContent = monedas;
+
     confetti({
 
         particleCount:250,
@@ -157,22 +200,22 @@ function verificarVictoria(){
 let libros = [
     {
         id: 1,
-        url: "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/5305833",
+        url: "https://libbyapp.com/search/bibliotecatec/search/query-misterio/page-1/7616602",
         leido: false
     },
     {
         id: 2,
-        url: "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/3466096",
+        url: "https://libbyapp.com/search/bibliotecatec/search/query-misterio/page-1/8804577",
         leido: false
     },
     {
         id: 3,
-        url: "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/5485309",
+        url: "https://libbyapp.com/search/bibliotecatec/search/query-misterio/page-1/5054249",
         leido: false
     },
     {
         id: 4,
-        url: "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/5807900",
+        url: "https://libbyapp.com/search/bibliotecatec/search/query-misterio/page-1/10480455",
         leido: false
     }
 ];
@@ -183,25 +226,40 @@ const mapa = [
 
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 
-[1,3,5,5,5,5,5,1,5,5,5,5,5,3,1],
+[1,3,5,5,5,5,5,5,5,5,5,5,5,3,1],
 
-[1,5,1,1,1,5,5,1,5,1,1,1,5,5,1],
-
-[1,5,1,5,5,5,5,5,5,5,5,1,5,5,1],
-
-[1,5,1,5,1,1,1,1,1,1,5,1,5,1,1],
-
-[1,5,5,5,5,5,5,2,5,5,5,5,5,5,1],
-
-[1,1,1,1,1,5,1,1,1,5,1,1,1,5,1],
+[1,5,1,1,1,5,1,1,1,5,1,1,1,5,1],
 
 [1,5,5,5,1,5,5,5,5,5,1,5,5,5,1],
 
-[1,3,5,5,5,5,1,1,5,5,5,5,5,3,1],
+[1,1,1,5,1,1,1,5,1,1,1,5,1,1,1],
+
+[1,5,5,5,5,5,5,2,5,5,5,5,5,5,1],
+
+[1,1,1,5,1,1,1,5,1,1,1,5,1,1,1],
+
+[1,5,5,5,1,5,5,5,5,5,1,5,5,5,1],
+
+[1,3,5,5,5,5,1,1,1,5,5,5,5,3,1],
 
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
 ];
+
+function moverFantasmaDecorativo(){
+
+    fantasmaPaso++;
+
+    if(fantasmaPaso >= fantasmaRuta.length){
+        fantasmaPaso = 0;
+    }
+
+    fantasmaFila = fantasmaRuta[fantasmaPaso][0];
+    fantasmaColumna = fantasmaRuta[fantasmaPaso][1];
+
+    dibujarMapa();
+
+}
 function dibujarMapa(){
 
     const laberinto = document.getElementById("laberinto");
@@ -220,6 +278,10 @@ function dibujarMapa(){
         casilla.classList.add("casilla");
 
         const valor = mapa[fila][columna];
+
+        const esFantasmaDecorativo =
+    fila === fantasmaFila &&
+    columna === fantasmaColumna;
 
         if(valor === 1){
 
@@ -245,16 +307,23 @@ function dibujarMapa(){
             casilla.classList.add("fantasma");
 
         }
-        else if(valor===5){
+       else if(valor===5){
 
-            casilla.classList.add("puntito");
+    casilla.classList.add("puntito");
 
-        }
-        else{
+}
+else{
 
-            casilla.classList.add("camino");
+    casilla.classList.add("camino");
 
-        }
+}
+
+// Fantasma decorativo encima de cualquier casilla
+if(esFantasmaDecorativo){
+
+    casilla.classList.add("fantasma");
+
+}
 
         laberinto.appendChild(casilla);
 
@@ -284,7 +353,13 @@ setInterval(()=>{
 
     moverPacman(movimientoY,movimientoX);
 
-},120);
+},132);
+
+setInterval(()=>{
+
+    moverFantasmaDecorativo();
+
+},500);
 
 document.addEventListener("keydown", function(e){
 
@@ -392,10 +467,24 @@ if(valor === 3){
 
     mostrarMonedas();
 
-    abrirLibro(libros[0].url);
+    const librosDisponibles =
+        libros.filter(libro => !libro.leido);
+
+    if(librosDisponibles.length > 0){
+
+        const indiceAleatorio =
+            Math.floor(Math.random() * librosDisponibles.length);
+
+        const libroAleatorio =
+            librosDisponibles[indiceAleatorio];
+
+        libroAleatorio.leido = true;
+
+        abrirLibro(libroAleatorio.url);
+
+    }
 
 }
-
     // borrar posición anterior
     mapa[pacmanFila][pacmanColumna] = 0;
 
@@ -456,6 +545,10 @@ document.addEventListener("touchend", function(e){
     ultimoToque = ahora;
 
 }, { passive:false });
+
+// =========================================
+// PROTECCIÓN DEL BOTÓN ATRÁS
+// =========================================
 
 // =========================================
 // PRUEBA DEL BOTÓN ATRÁS
