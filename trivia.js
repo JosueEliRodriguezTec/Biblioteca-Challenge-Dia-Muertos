@@ -1,91 +1,137 @@
+// =========================================
+// PROTECCIÓN DE ACCESO AL CHALLENGE
+// =========================================
+
+const autorizado =
+    sessionStorage.getItem("challengeIniciado");
+
+if(autorizado !== "true"){
+
+    window.location.href =
+        "https://josueelirodrigueztec.github.io/Biblioteca-Challenge-Septiembre/index.html";
+
+}
+
 const preguntas = [
 
     {
-        pregunta: "¿Cuál es el horario de la Biblioteca?",
+        pregunta: "¿Cuándo se celebra Halloween?",
 
         opciones: [
-            "7:30 a.m. a 7:00 p.m.",
-            "8:00 a.m. a 8:00 p.m.",
-            "7:00 a.m. a 6:00 p.m.",
-            "9:00 a.m. a 5:00 p.m."
+            "31 de octubre",
+            "14 de febrero",
+            "25 de diciembre",
+            "1 de enero"
         ],
 
         correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/5305833"
+        libro: "https://libbyapp.com/search/bibliotecatec/search/query-cuentos%20de%20terror/page-1/10024629"
     },
 
     {
-        pregunta: "¿En qué campus se encuentra esta Biblioteca?",
+        pregunta: "¿Qué fruta es uno de los símbolos más representativos de Halloween?",
 
         opciones: [
-            "Garza Lagüera",
-            "Valle Alto",
-            "Garza Sada",
-            "Cumbres"
+            "La calabaza",
+            "La manzana",
+            "La fresa",
+            "La sandía"
         ],
 
         correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/3466096"
+        libro: "https://libbyapp.com/search/bibliotecatec/search/query-cuentos%20de%20terror/page-1/10535018"
     },
 
     {
-        pregunta: "¿Quiénes son colaboradores de la Biblioteca?",
+        pregunta: "¿Qué animal se relaciona tradicionalmente con Halloween?",
 
         opciones: [
-            "Adriana",
-            "Alejandra",
-            "Josue",
-            "Todos los anteriores"
+            "El gato negro",
+            "El delfín",
+            "El caballo",
+            "El conejo"
         ],
 
-        correcta: 3,
+        correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/5485309"
+        libro: "https://libbyapp.com/search/bibliotecatec/search/query-terror/page-1/12478887"
     },
 
     {
-        pregunta: "¿Qué servicios ofrece la Biblioteca?",
+        pregunta: "¿Qué criatura aparece frecuentemente en las historias y decoraciones de Halloween?",
 
         opciones: [
-            "Referencias",
-            "Libros físicos",
-            "Zona VR",
-            "Todos los anteriores"
+            "El fantasma",
+            "El unicornio",
+            "El dinosaurio",
+            "El astronauta"
         ],
 
-        correcta: 3,
+        correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/5807900"
+        libro: "https://libbyapp.com/search/bibliotecatec/search/query-terror/page-1/4715412"
     },
 
     {
-        pregunta: "¿Está permitido consumir alimentos dentro de la Biblioteca?",
+        pregunta: "¿Qué personaje se representa tradicionalmente como un ser que se transforma durante la luna llena?",
 
         opciones: [
-            "Verdadero",
-            "Falso"
+            "El hombre lobo",
+            "El pirata",
+            "El astronauta",
+            "El caballero"
         ],
 
-        correcta: 1,
+        correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/5305833"
+        libro: "https://libbyapp.com/search/bibliotecatec/search/query-terror/page-1/9427619"
     },
 
     {
-        pregunta: "¿En qué área de la Biblioteca puedes realizar actividades inmersivas?",
+        pregunta: "¿Qué objeto se utiliza tradicionalmente para iluminar una calabaza de Halloween?",
 
         opciones: [
-            "Sala de estudio en silencio",
-            "Zona VR",
-            "Auditorio",
-            "Módulo de préstamo"
+            "Una vela",
+            "Una regla",
+            "Un lápiz",
+            "Una campana"
         ],
 
-        correcta: 1,
+        correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/spotlight-books/page-1/3466096"
+        libro: "https://libbyapp.com/search/bibliotecatec/search/query-terror/page-1/6201479"
+    },
+
+    {
+        pregunta: "¿Qué colores se relacionan tradicionalmente con Halloween?",
+
+        opciones: [
+            "Naranja y negro",
+            "Azul y rosa",
+            "Verde y blanco",
+            "Rojo y amarillo"
+        ],
+
+        correcta: 0,
+
+        libro: "https://libbyapp.com/search/bibliotecatec/search/query-terror/page-1/3941420"
+    },
+
+    {
+        pregunta: "¿Qué dicen tradicionalmente los niños cuando van de casa en casa durante Halloween?",
+
+        opciones: [
+            "¡Dulce o truco!",
+            "¡Feliz cumpleaños!",
+            "¡Buenos días!",
+            "¡Viva México!"
+        ],
+
+        correcta: 0,
+
+        libro: "https://libbyapp.com/search/bibliotecatec/search/query-terror/page-1/2583028"
     }
 
 ];
@@ -93,7 +139,7 @@ const preguntas = [
 // Mezclar las preguntas
 let preguntasJuego = [...preguntas]
 .sort(() => Math.random() - 0.5)
-.slice(0,4);
+.slice(0,5);
 
 let preguntaActual = 0;
 
@@ -131,7 +177,7 @@ function mostrarPregunta(){
     mezclarOpciones(p);
 
     lblNumero.innerHTML =
-        "Pregunta " + (preguntaActual+1) + " de 4";
+        "Pregunta " + (preguntaActual+1) + " de 5";
 
     lblPregunta.innerHTML = p.pregunta;
 
