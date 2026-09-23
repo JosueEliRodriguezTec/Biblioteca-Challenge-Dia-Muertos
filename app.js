@@ -58,12 +58,12 @@ var scr;
 const PUNTOS_META = 350;
 var rand;
 const imagenes = [
-    "Calabaza.png",
-    "caramelo.png",
-    "caldera.png",
-    "cuervo.png",
-    "dulce.png",
-    "sombrerobruja.png"
+    "cafe.png",
+    "calavera.png",
+    "flor.png",
+    "pandemuerto.png",
+    "perro.png",
+    "vela.png"
 ];
 
 
