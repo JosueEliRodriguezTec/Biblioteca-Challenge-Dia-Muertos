@@ -71,7 +71,7 @@ async function cargarParticipantes(){
        const consulta =
     await getDocs(
         query(
-            collection(db, "participantes"),
+            collection(db, "participantes_octubre"),
             orderBy("fecha", "desc")
         )
     );
@@ -99,6 +99,10 @@ consulta.forEach((doc)=>{
                     <td>${formatearSatisfaccion(datos.satisfaccion)}</td>
 
                 <td>${formatearFecha(datos.fecha)}</td>
+
+                <td>${datos.temporada || "-"}</td>
+
+                
 
             `;
 
@@ -287,7 +291,7 @@ async function exportarExcel(){
         const consulta =
     await getDocs(
         query(
-            collection(db, "participantes"),
+            collection(db, "participantes_octubre"),
             orderBy("fecha", "desc")
         )
     );
@@ -323,6 +327,9 @@ async function exportarExcel(){
 
                     "Satisfacción":
         participante.satisfaccion || "-",
+
+                "Temporada":
+    participante.temporada || "-",
 
                 "Fecha de registro":
                     fecha
@@ -459,6 +466,8 @@ buscar.addEventListener("input", function(){
             <td>${datos.semestre}°</td>
 
             <td>${formatearSatisfaccion(datos.satisfaccion)}</td>
+
+             <td>${datos.temporada || "-"}</td>
 
             <td>${formatearFecha(datos.fecha)}</td>
 
