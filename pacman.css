@@ -68,7 +68,7 @@ h2{
 
     display:grid;
 
-    border:5px solid #2196f3;
+    border:5px solid #f59e0b;
     border-radius:15px;
 
     overflow:hidden;
@@ -199,10 +199,9 @@ h2{
 }
 
 .muro{
-    background:#ff7518;
-    border:1px solid #c94f00;
-    border-radius:4px;
-    box-shadow:0 0 5px rgba(255,117,24,.35);
+background:#f59e0b;
+border:1px solid #d97706;
+box-shadow:0 0 8px rgba(245,158,11,.5);
 }
 
 .muro:nth-child(3n){
@@ -212,9 +211,8 @@ h2{
 }
 
 .muro:nth-child(3n+1){
-    background:#ff7518;
-    border-color:#c94f00;
-    box-shadow:0 0 5px rgba(255,117,24,.35);
+background:#ffb703;
+border-color:#fb8500;
 }
 .camino{
     background:#050505;
