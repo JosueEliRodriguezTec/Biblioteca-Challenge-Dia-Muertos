@@ -808,3 +808,43 @@ body{
 }
 
 
+.esquina1,
+.esquina2,
+.esquina3,
+.esquina4{
+    background:black;
+    position:relative;
+}
+
+.esquina1::after,
+.esquina2::after,
+.esquina3::after,
+.esquina4::after{
+    content:"";
+    width:51px;
+    height:51px;
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+.esquina1::after{
+    background-image:url("img/josue.png");
+}
+
+.esquina2::after{
+    background-image:url("img/adri.png");
+}
+
+.esquina3::after{
+    background-image:url("img/ale.png");
+}
+
+.esquina4::after{
+    background-image:url("img/myrna.png");
+}
+
