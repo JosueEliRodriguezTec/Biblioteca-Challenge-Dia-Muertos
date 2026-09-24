@@ -26,7 +26,7 @@ const preguntas = [
 
         correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/search/query-cuentos%20de%20terror/page-1/10024629"
+        libro: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/2354112"
     },
 
     {
@@ -41,7 +41,7 @@ const preguntas = [
 
         correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/search/query-cuentos%20de%20terror/page-1/10535018"
+        libro: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/3369955"
     },
 
     {
@@ -56,7 +56,7 @@ const preguntas = [
 
         correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/search/query-terror/page-1/12478887"
+        libro: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/6056976"
     },
 
     {
@@ -71,7 +71,7 @@ const preguntas = [
 
         correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/search/query-terror/page-1/4715412"
+        libro: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/4207617"
     },
 
     {
@@ -86,7 +86,7 @@ const preguntas = [
 
         correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/search/query-terror/page-1/9427619"
+        libro: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/3693721"
     },
 
     {
@@ -101,7 +101,7 @@ const preguntas = [
 
         correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/search/query-terror/page-1/6201479"
+        libro: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/5980090"
     },
 
     {
@@ -116,7 +116,7 @@ const preguntas = [
 
         correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/search/query-terror/page-1/3941420"
+        libro: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/3666590"
     },
 
     {
@@ -131,7 +131,7 @@ const preguntas = [
 
         correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/search/query-terror/page-1/2583028"
+        libro: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/5443772"
     }
 
 ];
