@@ -200,22 +200,22 @@ function mostrarVictoria(){
 let libros = [
     {
         id: 1,
-        url: "https://libbyapp.com/search/bibliotecatec/search/query-misterio/page-1/7616602",
+        url: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/6040628",
         leido: false
     },
     {
         id: 2,
-        url: "https://libbyapp.com/search/bibliotecatec/search/query-misterio/page-1/8804577",
+        url: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/4299330",
         leido: false
     },
     {
         id: 3,
-        url: "https://libbyapp.com/search/bibliotecatec/search/query-misterio/page-1/5054249",
+        url: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/3866355",
         leido: false
     },
     {
         id: 4,
-        url: "https://libbyapp.com/search/bibliotecatec/search/query-misterio/page-1/10480455",
+        url: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/3717653",
         leido: false
     }
 ];
