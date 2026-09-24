@@ -15,13 +15,13 @@ if(autorizado !== "true"){
 const preguntas = [
 
     {
-        pregunta: "¿Cuándo se celebra Halloween?",
+        pregunta: "¿Qué flor es uno de los símbolos más representativos del Día de Muertos?",
 
         opciones: [
-            "31 de octubre",
-            "14 de febrero",
-            "25 de diciembre",
-            "1 de enero"
+            "Flor de cempasúchil",
+            "Rosa",
+            "Tulipán",
+            "Girasol"
         ],
 
         correcta: 0,
@@ -30,13 +30,13 @@ const preguntas = [
     },
 
     {
-        pregunta: "¿Qué fruta es uno de los símbolos más representativos de Halloween?",
+        pregunta: "¿En qué fechas se celebra tradicionalmente el Día de Muertos en México?",
 
         opciones: [
-            "La calabaza",
-            "La manzana",
-            "La fresa",
-            "La sandía"
+            "1 y 2 de noviembre",
+            "24 y 25 de diciembre",
+            "14 y 15 de febrero",
+            "15 y 16 de septiembre"
         ],
 
         correcta: 0,
@@ -45,13 +45,13 @@ const preguntas = [
     },
 
     {
-        pregunta: "¿Qué animal se relaciona tradicionalmente con Halloween?",
+        pregunta: "¿Qué alimento tradicional se coloca en los altares del Día de Muertos?",
 
         opciones: [
-            "El gato negro",
-            "El delfín",
-            "El caballo",
-            "El conejo"
+            "Pan de muerto",
+            "Pizza",
+            "Hamburguesa",
+            "Hot dog"
         ],
 
         correcta: 0,
@@ -60,13 +60,13 @@ const preguntas = [
     },
 
     {
-        pregunta: "¿Qué criatura aparece frecuentemente en las historias y decoraciones de Halloween?",
+        pregunta: "¿Qué personaje es uno de los más representativos del Día de Muertos?",
 
         opciones: [
-            "El fantasma",
-            "El unicornio",
-            "El dinosaurio",
-            "El astronauta"
+            "La Catrina",
+            "Caperucita Roja",
+            "Blancanieves",
+            "Rapunzel"
         ],
 
         correcta: 0,
@@ -75,13 +75,13 @@ const preguntas = [
     },
 
     {
-        pregunta: "¿Qué personaje se representa tradicionalmente como un ser que se transforma durante la luna llena?",
+        pregunta: "¿Qué elemento de papel decorativo suele colocarse en las ofrendas y celebraciones?",
 
         opciones: [
-            "El hombre lobo",
-            "El pirata",
-            "El astronauta",
-            "El caballero"
+            "Papel picado",
+            "Papel aluminio",
+            "Cartón corrugado",
+            "Periódico"
         ],
 
         correcta: 0,
@@ -90,13 +90,13 @@ const preguntas = [
     },
 
     {
-        pregunta: "¿Qué objeto se utiliza tradicionalmente para iluminar una calabaza de Halloween?",
+        pregunta: "¿Qué representan las veladoras en una ofrenda?",
 
         opciones: [
-            "Una vela",
-            "Una regla",
-            "Un lápiz",
-            "Una campana"
+            "La luz que guía a los difuntos",
+            "El clima",
+            "La música",
+            "La cosecha"
         ],
 
         correcta: 0,
@@ -105,13 +105,13 @@ const preguntas = [
     },
 
     {
-        pregunta: "¿Qué colores se relacionan tradicionalmente con Halloween?",
+        pregunta: "¿Qué figura de azúcar es tradicional en el Día de Muertos?",
 
         opciones: [
-            "Naranja y negro",
-            "Azul y rosa",
-            "Verde y blanco",
-            "Rojo y amarillo"
+            "Calavera de azúcar",
+            "Galleta salada",
+            "Paleta helada",
+            "Dona glaseada"
         ],
 
         correcta: 0,
@@ -120,13 +120,13 @@ const preguntas = [
     },
 
     {
-        pregunta: "¿Qué dicen tradicionalmente los niños cuando van de casa en casa durante Halloween?",
+        pregunta: "¿Qué se acostumbra colocar en una ofrenda para recordar a los seres queridos?",
 
         opciones: [
-            "¡Dulce o truco!",
-            "¡Feliz cumpleaños!",
-            "¡Buenos días!",
-            "¡Viva México!"
+            "Fotografías",
+            "Boletos de cine",
+            "Tarjetas bancarias",
+            "Revistas"
         ],
 
         correcta: 0,
