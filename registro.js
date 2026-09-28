@@ -31,7 +31,7 @@ const btnBiblioteca =
     document.getElementById("btnBiblioteca");
 
 
-const TEMPORADA_ACTUAL = "Octubre";
+const TEMPORADA_ACTUAL = "Noviembre";
 
 let satisfaccion = "";
 
@@ -176,7 +176,7 @@ formulario.addEventListener("submit", async function (e) {
         ========================================= */
 
         await setDoc(
-            doc(db, "participantes_octubre", idParticipante),
+            doc(db, "participantes_noviembre", idParticipante),
             {
                 nombre: nombre,
                 matricula: matricula,
