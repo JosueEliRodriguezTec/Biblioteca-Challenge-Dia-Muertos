@@ -71,7 +71,7 @@ async function cargarParticipantes(){
        const consulta =
     await getDocs(
         query(
-            collection(db, "participantes_octubre"),
+            collection(db, "participantes_noviembre"),
             orderBy("fecha", "desc")
         )
     );
@@ -291,7 +291,7 @@ async function exportarExcel(){
         const consulta =
     await getDocs(
         query(
-            collection(db, "participantes_octubre"),
+            collection(db, "participantes_noviembre"),
             orderBy("fecha", "desc")
         )
     );
