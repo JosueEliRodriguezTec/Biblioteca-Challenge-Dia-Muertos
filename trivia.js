@@ -2,15 +2,14 @@
 // PROTECCIÓN DE ACCESO AL CHALLENGE
 // =========================================
 
-//const autorizado =
-  //  sessionStorage.getItem("challengeIniciado");
+const autorizado =
+  sessionStorage.getItem("challengeIniciado");
 
-//if(autorizado !== "true"){
+if(autorizado !== "true"){
 
-  //  window.location.href =
-    //    "https://josueelirodrigueztec.github.io/Biblioteca-Challenge-Dia-Muertos/";
-
-//}
+  window.location.href =
+    "https://josueelirodrigueztec.github.io/Biblioteca-Challenge-Dia-Muertos/";
+}
 
 const preguntas = [
 
