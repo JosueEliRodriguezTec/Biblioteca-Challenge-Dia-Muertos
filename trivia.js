@@ -238,11 +238,7 @@ function revisarRespuesta(indice){
 
     botones.forEach(b => b.disabled = true);
 
-    setTimeout(()=>{
-
-        abrirLibro(pregunta.libro);
-
-    },800);
+abrirLibro(pregunta.libro);
 
 }
     else{
@@ -280,19 +276,103 @@ function cerrarIncorrecto(){
 
 }
 
+
+
+
 function abrirLibro(url){
 
-    document.getElementById("iframeLibro").src = url;
+    const ventanaEbook = window.open(
+        url,
+        "bibliotecaEbook",
+        "popup=yes,width=1000,height=750,resizable=yes,scrollbars=yes"
+    );
 
-    document.getElementById("modalLibro").style.display = "flex";
+    if(!ventanaEbook){
 
+        alert(
+            "No se pudo abrir el libro. " +
+            "Permite las ventanas emergentes e inténtalo de nuevo."
+        );
+
+        botones.forEach(b => {
+            b.disabled = false;
+            b.classList.remove("correcta");
+        });
+
+        return;
+    }
+
+    controlarCierreLibro(ventanaEbook);
 }
 
-function cerrarLibro(){
 
-    document.getElementById("modalLibro").style.display = "none";
+// =========================================
+// CONTROLAR CIERRE DEL LIBRO
+// =========================================
 
-    document.getElementById("iframeLibro").src = "";
+function controlarCierreLibro(ventanaEbook){
+
+    let finalizado = false;
+    let temporizadorCierre;
+
+    function cerrarYContinuar(){
+
+        if(finalizado) return;
+
+        finalizado = true;
+
+        clearInterval(vigilarVentana);
+        clearTimeout(temporizadorCierre);
+
+        avanzarPregunta();
+    }
+
+    // Detectar si el alumno cierra la ventana
+    const vigilarVentana = setInterval(() => {
+
+        if(ventanaEbook.closed){
+            cerrarYContinuar();
+        }
+
+    }, 500);
+
+    // Intentar cerrar después de 8 segundos
+    temporizadorCierre = setTimeout(() => {
+
+        if(!ventanaEbook.closed){
+            ventanaEbook.close();
+        }
+
+        setTimeout(() => {
+
+            if(ventanaEbook.closed){
+
+                cerrarYContinuar();
+
+            }else{
+
+                const continuar = confirm(
+                    "Si terminaste de consultar el libro, " +
+                    "presiona Aceptar para continuar con la trivia."
+                );
+
+                if(continuar){
+                    cerrarYContinuar();
+                }
+
+            }
+
+        }, 300);
+
+    }, 8000);
+}
+
+
+// =========================================
+// AVANZAR A LA SIGUIENTE PREGUNTA
+// =========================================
+
+function avanzarPregunta(){
 
     preguntaActual++;
 
@@ -302,23 +382,20 @@ function cerrarLibro(){
 
     }else{
 
-        botones.forEach(b=>{
+        botones.forEach(b => {
 
             b.disabled = false;
 
             b.classList.remove("correcta");
-
             b.classList.remove("incorrecta");
 
         });
 
-     
-
         mostrarPregunta();
 
     }
-
 }
+
 
 function terminarTrivia(){
 
