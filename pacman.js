@@ -37,6 +37,108 @@ let tiempo = 60;
 let juegoPausado = false;
 
 
+let libroPendientePacman = null;
+
+// =========================================
+// PANEL PARA ABRIR EL LIBRO
+// =========================================
+
+const panelLibroPacman = document.createElement("div");
+
+panelLibroPacman.style.cssText = `
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.85);
+`;
+
+const tarjetaLibroPacman = document.createElement("div");
+
+tarjetaLibroPacman.style.cssText = `
+    background: white;
+    color: #222;
+    padding: 25px;
+    border-radius: 16px;
+    text-align: center;
+    width: 100%;
+    max-width: 340px;
+    font-family: Arial, sans-serif;
+`;
+
+tarjetaLibroPacman.innerHTML = `
+    <h2>📚 ¡Encontraste un libro!</h2>
+    <p>Toca el botón para consultar el libro y continuar tu aventura.</p>
+`;
+
+const botonAbrirLibroPacman = document.createElement("button");
+
+botonAbrirLibroPacman.textContent = "Abrir libro";
+
+botonAbrirLibroPacman.style.cssText = `
+    background: #6c3bd1;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 24px;
+    font-size: 17px;
+    cursor: pointer;
+    touch-action: manipulation;
+`;
+
+botonAbrirLibroPacman.addEventListener("click", function() {
+
+    if (!libroPendientePacman) return;
+
+    const abierto = abrirLibro(libroPendientePacman.url);
+
+    if (abierto) {
+
+        libroPendientePacman.leido = true;
+        libroPendientePacman = null;
+
+        panelLibroPacman.style.display = "none";
+
+    }
+
+});
+
+tarjetaLibroPacman.appendChild(botonAbrirLibroPacman);
+panelLibroPacman.appendChild(tarjetaLibroPacman);
+
+document.body.appendChild(panelLibroPacman);
+
+
+// =========================================
+// MOSTRAR EL PANEL DEL LIBRO
+// =========================================
+
+function mostrarPanelLibroPacman(libro) {
+
+    libroPendientePacman = libro;
+
+    juegoPausado = true;
+
+    panelLibroPacman.style.display = "flex";
+
+}
+
+
+// =========================================
+// SOLICITAR APERTURA DEL LIBRO
+// =========================================
+
+function intentarAbrirLibroAutomatico(libro) {
+
+    mostrarPanelLibroPacman(libro);
+
+}
+
+
+
 
 let direccion = "derecha";
 let cuadro = 0;
@@ -499,74 +601,76 @@ document.getElementById("derecha").addEventListener("pointerdown", function(){
 });
 
 dibujarMapa();
-function moverPacman(df,dc){
-    if(juegoPausado){
-    return;
-}
 
- let nuevaFila = pacmanFila + df;
-let nuevaColumna = pacmanColumna + dc;
+function moverPacman(df, dc) {
 
-// ¿Es muro o está fuera del mapa?
-if(
-    nuevaFila < 0 ||
-    nuevaFila >= mapa.length ||
-    nuevaColumna < 0 ||
-    nuevaColumna >= mapa[0].length ||
-    mapa[nuevaFila][nuevaColumna] == 1
-){
-    return;
-}
-
-const valor = mapa[nuevaFila][nuevaColumna];
-
-if(valor === 5){
-
-    mapa[nuevaFila][nuevaColumna] = 0;
-
-}
-
-if(valor === 3){
-
-    mapa[nuevaFila][nuevaColumna] = 0;
-
-    monedas += 10;
-
-    actualizarHUD();
-
-    mostrarMonedas();
-
-    const librosDisponibles =
-        libros.filter(libro => !libro.leido);
-
-    if(librosDisponibles.length > 0){
-
-        const indiceAleatorio =
-            Math.floor(Math.random() * librosDisponibles.length);
-
-        const libroAleatorio =
-            librosDisponibles[indiceAleatorio];
-
-        if(abrirLibro(libroAleatorio.url)){
-    libroAleatorio.leido = true;
-}
-
+    if (juegoPausado) {
+        return;
     }
 
-}
-    // borrar posición anterior
+    let nuevaFila = pacmanFila + df;
+    let nuevaColumna = pacmanColumna + dc;
+
+    // Verificar si es muro o está fuera del mapa
+    if (
+        nuevaFila < 0 ||
+        nuevaFila >= mapa.length ||
+        nuevaColumna < 0 ||
+        nuevaColumna >= mapa[0].length ||
+        mapa[nuevaFila][nuevaColumna] === 1
+    ) {
+        return;
+    }
+
+    const valor = mapa[nuevaFila][nuevaColumna];
+
+    // Recoger punto
+    if (valor === 5) {
+        mapa[nuevaFila][nuevaColumna] = 0;
+    }
+
+    // Recoger libro
+    if (valor === 3) {
+
+        mapa[nuevaFila][nuevaColumna] = 0;
+
+        monedas += 10;
+
+        actualizarHUD();
+        mostrarMonedas();
+
+        const librosDisponibles =
+            libros.filter(libro => !libro.leido);
+
+        if (librosDisponibles.length > 0) {
+
+            const indiceAleatorio =
+                Math.floor(Math.random() * librosDisponibles.length);
+
+            const libroAleatorio =
+                librosDisponibles[indiceAleatorio];
+
+            intentarAbrirLibroAutomatico(libroAleatorio);
+        }
+    }
+
+    // Borrar posición anterior
     mapa[pacmanFila][pacmanColumna] = 0;
 
-    // guardar nueva posición
+    // Guardar nueva posición
     pacmanFila = nuevaFila;
     pacmanColumna = nuevaColumna;
 
-    // dibujar pacman
+    // Dibujar Pac-Man
     mapa[pacmanFila][pacmanColumna] = 2;
 
     dibujarMapa();
-verificarVictoria();
+
+    verificarVictoria();
 }
+
+  
+
 
 
 /*document.addEventListener("gesturestart", function(e){
