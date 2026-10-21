@@ -36,8 +36,8 @@ let tiempo = 60;
 
 let juegoPausado = false;
 
-const modal = document.getElementById("modalLibro");
-const iframe = document.getElementById("iframeLibro");
+
+
 let direccion = "derecha";
 let cuadro = 0;
 function continuarNivel3(){
@@ -89,33 +89,92 @@ let fantasmaPaso = 0;
 let fantasmaFila = 0;
 let fantasmaColumna = 0;
 
+
 function abrirLibro(urlLibro){
+
+    const ventanaEbook = window.open(
+        urlLibro,
+        "bibliotecaEbook",
+        "popup=yes,width=1000,height=750,resizable=yes,scrollbars=yes"
+    );
+
+    if(!ventanaEbook){
+        alert(
+            "No se pudo abrir el libro. " +
+            "Permite las ventanas emergentes e inténtalo de nuevo."
+        );
+        return false;
+    }
+
+    controlarCierreLibro(ventanaEbook);
+
+    return true;
+}
+
+
+// =========================================
+// CONTROLAR CIERRE DEL LIBRO
+// =========================================
+
+function controlarCierreLibro(ventanaEbook){
 
     juegoPausado = true;
 
-    iframe.src = urlLibro;
+    let finalizado = false;
+    let temporizadorCierre;
 
-    modal.style.display = "flex";
+    function cerrarYContinuar(){
 
-    setTimeout(() => {
+        if(finalizado) return;
 
-        cerrarLibro();
+        finalizado = true;
 
-    }, 7000);
+        clearInterval(vigilarVentana);
+        clearTimeout(temporizadorCierre);
 
+        juegoPausado = false;
+    }
+
+    // Detectar si el alumno cierra la ventana manualmente
+    const vigilarVentana = setInterval(() => {
+
+        if(ventanaEbook.closed){
+            cerrarYContinuar();
+        }
+
+    }, 500);
+
+    // Intentar cerrar el libro después de 4.2 segundos
+    temporizadorCierre = setTimeout(() => {
+
+        if(!ventanaEbook.closed){
+            ventanaEbook.close();
+        }
+
+        setTimeout(() => {
+
+            if(ventanaEbook.closed){
+
+                cerrarYContinuar();
+
+            }else{
+
+                const continuar = confirm(
+                    "Si terminaste de consultar el libro, " +
+                    "presiona Aceptar para continuar con Pac-Man."
+                );
+
+                if(continuar){
+                    cerrarYContinuar();
+                }
+
+            }
+
+        }, 300);
+
+    }, 4200);
 }
 
-function cerrarLibro(){
-
-    modal.style.display = "none";
-
-    iframe.src = "";
-
-    juegoPausado = false;
-
-   
-
-}
 
 function actualizarHUD(){
 
@@ -488,9 +547,9 @@ if(valor === 3){
         const libroAleatorio =
             librosDisponibles[indiceAleatorio];
 
-        libroAleatorio.leido = true;
-
-        abrirLibro(libroAleatorio.url);
+        if(abrirLibro(libroAleatorio.url)){
+    libroAleatorio.leido = true;
+}
 
     }
 
