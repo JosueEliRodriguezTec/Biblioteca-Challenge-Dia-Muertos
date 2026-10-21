@@ -364,7 +364,7 @@ function controlarCierreLibro(ventanaEbook){
 
         }, 300);
 
-    }, 5500);
+    }, 5000);
 }
 
 
