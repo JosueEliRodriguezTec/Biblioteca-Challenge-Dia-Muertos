@@ -46,66 +46,112 @@ let jugador = JSON.parse(localStorage.getItem("jugador"));
 
     document.getElementById("coins").innerHTML = jugador.monedas;
 
-  function libro1(){
+  
+ // =========================================
+ // BOTONES DE LIBROS
+ // =========================================
 
-    if(visitados.libro1) return;
-
-    libroPendiente = "libro1";
+function libro1() {
+    if (visitados.libro1 || libroPendiente) return;
 
     abrirLibro(
         "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/6219113",
-        "_blank"
+        "libro1"
     );
+}
 
-}   
-function libro2(){
-
-    if(visitados.libro2) return;
-
-    libroPendiente = "libro2";
+function libro2() {
+    if (visitados.libro2 || libroPendiente) return;
 
     abrirLibro(
         "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/4450695",
-        "_blank"
+        "libro2"
     );
-
 }
 
-function libro3(){
-
-    if(visitados.libro3) return;
-
-    libroPendiente = "libro3";
+function libro3() {
+    if (visitados.libro3 || libroPendiente) return;
 
     abrirLibro(
         "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/1332447",
-        "_blank"
+        "libro3"
+    );
+}
+
+
+// =========================================
+// ABRIR LIBRO Y CERRARLO AUTOMÁTICAMENTE
+// =========================================
+
+function abrirLibro(url, nombreLibro) {
+
+    const ventanaEbook = window.open(
+        url,
+        "bibliotecaEbook",
+        "popup=yes,width=1000,height=750,resizable=yes,scrollbars=yes"
     );
 
-}
-
-function abrirLibro(url){
-
-    document.getElementById("iframeLibro").src = url;
-
-    document.getElementById("modalLibro").style.display = "flex";
-
-}
-
-function cerrarLibro(){
-
-    document.getElementById("modalLibro").style.display = "none";
-
-    document.getElementById("iframeLibro").src = "";
-
-    if(libroPendiente){
-
-        sumarMonedas(libroPendiente);
-
-        libroPendiente = null;
-
+    if (!ventanaEbook) {
+        alert(
+            "No se pudo abrir el libro. " +
+            "Permite las ventanas emergentes e inténtalo de nuevo."
+        );
+        return;
     }
 
+    libroPendiente = nombreLibro;
+
+    let finalizado = false;
+    let temporizadorCierre;
+
+    function finalizarVisita() {
+
+        if (finalizado) return;
+
+        finalizado = true;
+
+        clearInterval(vigilarVentana);
+        clearTimeout(temporizadorCierre);
+
+        if (libroPendiente === nombreLibro) {
+            sumarMonedas(nombreLibro);
+            libroPendiente = null;
+        }
+    }
+
+    // Detectar si el alumno cierra la ventana manualmente
+    const vigilarVentana = setInterval(() => {
+        if (ventanaEbook.closed) {
+            finalizarVisita();
+        }
+    }, 500);
+
+    // Cerrar automáticamente después de 4.2 segundos
+    temporizadorCierre = setTimeout(() => {
+
+        if (!ventanaEbook.closed) {
+            ventanaEbook.close();
+        }
+
+        setTimeout(() => {
+
+            if (ventanaEbook.closed) {
+                finalizarVisita();
+            } else {
+
+                const continuar = confirm(
+                    "Si terminaste de consultar el libro, " +
+                    "presiona Aceptar para continuar."
+                );
+
+                if (continuar) {
+                    finalizarVisita();
+                }
+            }
+
+        }, 300);
+
+    }, 5000);
 }
 
     function sumarMonedas(nombre){
