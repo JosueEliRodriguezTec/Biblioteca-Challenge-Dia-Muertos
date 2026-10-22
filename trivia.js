@@ -25,7 +25,7 @@ const preguntas = [
 
         correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/2354112"
+        libro: "https://elibro.net/en/ereader/consorcioitesm/35554"
     },
 
     {
@@ -40,7 +40,7 @@ const preguntas = [
 
         correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/3369955"
+        libro: "https://elibro.net/en/ereader/consorcioitesm/209522"
     },
 
     {
@@ -55,7 +55,7 @@ const preguntas = [
 
         correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/6056976"
+        libro: "https://elibro.net/en/ereader/consorcioitesm/6657"
     },
 
     {
@@ -70,7 +70,7 @@ const preguntas = [
 
         correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/4207617"
+        libro: "https://elibro.net/en/ereader/consorcioitesm/38796"
     },
 
     {
@@ -85,7 +85,7 @@ const preguntas = [
 
         correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/3693721"
+        libro: "https://elibro.net/en/ereader/consorcioitesm/225547"
     },
 
     {
@@ -100,7 +100,7 @@ const preguntas = [
 
         correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/5980090"
+        libro: "https://elibro.net/en/ereader/consorcioitesm/35917"
     },
 
     {
@@ -115,7 +115,7 @@ const preguntas = [
 
         correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/3666590"
+        libro: "https://elibro.net/en/ereader/consorcioitesm/35980/"
     },
 
     {
@@ -130,7 +130,7 @@ const preguntas = [
 
         correcta: 0,
 
-        libro: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/5443772"
+        libro: "https://elibro.net/en/ereader/consorcioitesm/36022/"
     }
 
 ];
