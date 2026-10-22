@@ -361,22 +361,22 @@ function mostrarVictoria(){
 let libros = [
     {
         id: 1,
-        url: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/6040628",
+        url: "https://elibro.net/es/ereader/consorcioitesm/41014",
         leido: false
     },
     {
         id: 2,
-        url: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/4299330",
+        url: "https://elibro.net/es/ereader/consorcioitesm/72075",
         leido: false
     },
     {
         id: 3,
-        url: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/3866355",
+        url: "https://elibro.net/es/ereader/consorcioitesm/71919",
         leido: false
     },
     {
         id: 4,
-        url: "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/3717653",
+        url: "https://elibro.net/es/ereader/consorcioitesm/37734",
         leido: false
     }
 ];
