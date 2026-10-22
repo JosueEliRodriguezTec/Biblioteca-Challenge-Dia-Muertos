@@ -55,7 +55,7 @@ function libro1() {
     if (visitados.libro1 || libroPendiente) return;
 
     abrirLibro(
-        "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/6219113",
+        "https://elibro.net/es/ereader/consorcioitesm/100174",
         "libro1"
     );
 }
@@ -64,7 +64,7 @@ function libro2() {
     if (visitados.libro2 || libroPendiente) return;
 
     abrirLibro(
-        "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/4450695",
+        "https://elibro.net/es/ereader/consorcioitesm/31439",
         "libro2"
     );
 }
@@ -73,7 +73,7 @@ function libro3() {
     if (visitados.libro3 || libroPendiente) return;
 
     abrirLibro(
-        "https://libbyapp.com/search/bibliotecatec/search/query-dia%20de%20muertos/page-1/1332447",
+        "https://elibro.net/es/ereader/consorcioitesm/21111",
         "libro3"
     );
 }
