@@ -418,6 +418,7 @@ const librosLogin = [
 ];
 
 
+
 btnLoginElibro.addEventListener("click", function () {
 
     const indiceAleatorio =
@@ -426,44 +427,34 @@ btnLoginElibro.addEventListener("click", function () {
     const libroAleatorio =
         librosLogin[indiceAleatorio];
 
-    // Asignar la liga seleccionada al botón
+    // Asignar el libro seleccionado
     btnLoginElibro.href = libroAleatorio;
 
-    // Mostrar botón para continuar
-    btnLoginElibro.style.display = "none";
+    // Marcar el inicio de sesión como iniciado
+    sessionStorage.setItem("sesionIniciada", "true");
 
-    btnContinuarLogin.style.display = "block";
+    // Desbloquear el juego desde el primer clic
+    btnIniciarJuego.disabled = false;
 
-});
+    btnIniciarJuego.innerHTML = "🎮 Iniciar Juego";
 
-/* =========================================
-   USUARIO REGRESA DESPUÉS DEL LOGIN
-========================================= */
-
-btnContinuarLogin.addEventListener("click", function () {
-
-    // Ocultar botón de continuar
-    btnContinuarLogin.style.display = "none";
-
-
-    // Cambiar apariencia del botón de login
-    btnLoginElibro.innerHTML =
-        "🟢 Sesión iniciada";
-
-    btnLoginElibro.style.display = "block";
+    // Cambiar apariencia del botón
+    btnLoginElibro.innerHTML = "🟢 Sesión iniciada";
 
     btnLoginElibro.style.opacity = "0.7";
 
     btnLoginElibro.style.pointerEvents = "none";
 
-
-    // Desbloquear Biblioteca Challenge
-    btnIniciarJuego.disabled = false;
-
-    btnIniciarJuego.innerHTML =
-        "🎮 Iniciar Juego";
+    // Ocultar el botón intermedio
+    btnContinuarLogin.style.display = "none";
 
 });
+
+
+/* =========================================
+   USUARIO REGRESA DESPUÉS DEL LOGIN
+========================================= */
+
 
 function terminarNivel() {
     sessionStorage.setItem("nivel1Completado", "true");
